@@ -1,4 +1,5 @@
 #include <iostream>
+#include <climits> // INT_MAX ve INT_MIN gibi sabitleri kullanabilmek için
 using namespace std;
 int main()
 {
@@ -79,6 +80,55 @@ int main()
 
   cout << "Güvenli ve okunaklı kod: j: " << j << " i: " << i << endl;
   */
+  /*
+  ///- **Integer Overflow (Tam Sayı Taşması) Örneği:**
+  int x = 2147483647;  // int veri türü için maksimum değer (2^31 - 1)
+  cout << "x: " << x << endl;  // x değeri, 2147483647 olmalı
 
+  /// Overflow durumunu tetikleme
+  x = x + 1;  // x + 1 işlemi int türünün kapasitesini aşacak ve taşmaya neden olacak
+  cout << "x + 1 (Overflow): " << x << endl;  // Bu durumda x değeri negatif olacaktır (-2147483648)
+
+  ///- **Floating-Point Overflow (Ondalıklı Sayı Taşması) Örneği:**
+  double y = 1.7e308;  // double veri türü için çok büyük bir değer (yaklaşık 1.7 * 10^308)
+  cout << "y: " << y << endl;  // y değeri 1.7e308 olmalı
+
+  /// Overflow durumunu tetikleme
+  y = y * 10;  // Bu işlem, double türünün kapasitesini aşacak ve "sonsuz" (infinity) değerini döndürecek
+  cout << "y * 10 (Overflow): " << y << endl;  // Bu durumda y değeri "inf" (sonsuz) olur
+
+  ///- **Overflow Kontrolü (Önceden Kontrol Etme) Örneği:**
+  int z = 2147483647;  // INT_MAX, int türünün maksimum değeri (2147483647)
+
+  /// Değerin overflow yapıp yapmadığını kontrol etme
+  if (z > INT_MAX - 1) {  // INT_MAX - 1'e kadar olan değerler overflow yapmaz
+      cout << "Overflow olacak!" << endl;  // Bu koşul true olacak, çünkü z'nin değeri INT_MAX'a çok yakın
+  } else {
+      z = z + 1;  // Overflow durumunda işlem yapılmaz
+      cout << "Yeni z: " << z << endl;  // Buraya hiç gelinmez, çünkü overflow kontrolü sağlandı
+  }
+
+  ///- **Veri Türü Değişikliği ile Overflow Önleme Örneği:**
+  long long int w = 9223372036854775807;  // long long int veri türü için maksimum değer (2^63 - 1)
+  cout << "w: " << w << endl;  // w değeri 9223372036854775807 olmalı
+
+  /// overflow durumunu tetikleme
+  w = w + 1;  // long long int türü kapasitesini aştığında taşma olacak
+  cout << "w + 1 (Overflow): " << w << endl;  // Bu durumda w değeri negatif olacaktır (-9223372036854775808)
+
+  /// Overflow'dan kaçınmak için daha geniş bir tür kullanabiliriz (long long int)
+  */
+  /*
+  /// Signed char 8 bitlik bir veri türüdür, bu yüzden -128 ile 127 arasında değerler alabilir.
+  /// İki'li Tamamlama (Two's Complement) yöntemi kullanılarak negatif sayılar temsil edilir.
+
+  signed char a = 127;   // En büyük pozitif değer
+  signed char b = -128;  // En küçük negatif değer
+  signed char c = -127;  // -128'den bir önceki negatif değer
+
+  cout << "a: " << (int)a << endl;  // 127, bu en büyük pozitif değerdir
+  cout << "b: " << (int)b << endl;  // -128, signed char ile temsil edilebilen en küçük negatif değerdir
+  cout << "c: " << (int)c << endl;  // -127, -128'den bir sonraki değerdir
+  */
   return 0;
 }
