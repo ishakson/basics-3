@@ -118,6 +118,13 @@ int main()
   cout << "w + 1 (Overflow): " << w << endl;  // Bu durumda w değeri negatif olacaktır (-9223372036854775808)
 
   /// Overflow'dan kaçınmak için daha geniş bir tür kullanabiliriz (long long int)
+  /// signed char 8 bitlik veri türüdür ve -128 ile 127 arasında değer alabilir.
+  signed char a = 127;  // 127, signed char'ın alabileceği en büyük değeri
+
+  /// Bu işlemde overflow (taşma) meydana gelir, çünkü 127'yi bir artırınca -128'e dönecektir.
+  a = a + 1;  // 127 + 1 = 128, fakat signed char'ın sınırları -128 ile 127 arasında olduğu için taşma olur.
+
+  cout << "a: " << (int)a << endl;  // Burada -128 yazacaktır, çünkü overflow oldu.
   */
   //*
   /*
