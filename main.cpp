@@ -142,5 +142,137 @@ int main()
   cout << "b: " << (int)b << endl;  // -128, signed char ile temsil edilebilen en küçük negatif değerdir
   cout << "c: " << (int)c << endl;  // -127, -128'den bir sonraki değerdir
   */
+  //*
+  /*
+  /// INT_MAX: signed int veri türünün alabileceği en büyük değeri gösterir.
+  /// Genellikle 32-bit sistemlerde 2147483647'dir.
+  cout << "INT_MAX: " << INT_MAX << endl;
+
+  /// INT_MIN: signed int veri türünün alabileceği en küçük değeri gösterir.
+  /// Genellikle 32-bit sistemlerde -2147483648'dir.
+  cout << "INT_MIN: " << INT_MIN << endl;
+
+  /// LONG_MAX: signed long veri türünün alabileceği en büyük değeri gösterir.
+  /// Genellikle 32-bit sistemlerde 2147483647, 64-bit sistemlerde 9223372036854775807'dir.
+  cout << "LONG_MAX: " << LONG_MAX << endl;
+
+  /// LONG_MIN: signed long veri türünün alabileceği en küçük değeri gösterir.
+  /// Genellikle 32-bit sistemlerde -2147483648, 64-bit sistemlerde -9223372036854775808'dir.
+  cout << "LONG_MIN: " << LONG_MIN << endl;
+
+  /// CHAR_MAX: signed char veri türünün alabileceği en büyük değeri gösterir.
+  /// signed char için genellikle 127'dir, unsigned char için ise 255'tir.
+  cout << "CHAR_MAX: " << CHAR_MAX << endl;
+
+  /// CHAR_MIN: signed char veri türünün alabileceği en küçük değeri gösterir.
+  /// signed char için genellikle -128'dir.
+  cout << "CHAR_MIN: " << CHAR_MIN << endl;
+
+  /// USHRT_MAX: unsigned short veri türünün alabileceği en büyük değeri gösterir.
+  /// unsigned short için genellikle 65535'tir.
+  cout << "USHRT_MAX: " << USHRT_MAX << endl;
+
+  /// USHRT_MIN: unsigned short veri türünün alabileceği en küçük değeri gösterir.
+  /// unsigned short için minimum değer her zaman 0'dır.
+  cout << "USHRT_MIN: " << USHRT_MIN << endl;
+
+  /// UINT_MAX: unsigned int veri türünün alabileceği en büyük değeri gösterir.
+  /// Genellikle 32-bit sistemlerde 4294967295'dir.
+  cout << "UINT_MAX: " << UINT_MAX << endl;
+
+  /// UINT_MIN: unsigned int veri türünün alabileceği en küçük değeri gösterir.
+  /// unsigned int için minimum değer her zaman 0'dır.
+  cout << "UINT_MIN: " << UINT_MIN << endl;
+
+  /// LLONG_MAX: signed long long veri türünün alabileceği en büyük değeri gösterir.
+  /// Genellikle 64-bit sistemlerde 9223372036854775807'dir.
+  cout << "LLONG_MAX: " << LLONG_MAX << endl;
+
+  /// LLONG_MIN: signed long long veri türünün alabileceği en küçük değeri gösterir.
+  /// Genellikle 64-bit sistemlerde -9223372036854775808'dir.
+  cout << "LLONG_MIN: " << LLONG_MIN << endl;
+
+  /// UCHAR_MAX: unsigned char veri türünün alabileceği en büyük değeri gösterir.
+  /// unsigned char için genellikle 255'tir.
+  cout << "UCHAR_MAX: " << UCHAR_MAX << endl;
+  */
+  //*
+  /*
+  /// -----------------------------------
+  /// 1. Implicit Type Conversion (Otomatik Dönüşüm)
+  /// Derleyici, türler arasında veri kaybı olmadan dönüşüm yapar.
+  double d = 9.99;   // double türünde bir değişken
+  int i = d;         // Otomatik olarak double'dan int'e dönüşüm (decimal kısmı kaybolur)
+  cout << "Implicit Conversion (double to int): " << i << endl;
+
+  /// -----------------------------------
+  /// 2. Explicit Type Conversion (Açık Dönüşüm)
+  /// Tür dönüşümünü açıkça belirtmek için (type) veya static_cast<> kullanılır.
+  double d2 = 3.14;
+  int i2 = (int)d2;   // (int) kullanarak açık dönüşüm yapılır (decimal kısmı kaybolur)
+  cout << "Explicit Conversion (double to int): " << i2 << endl;
+
+  /// -----------------------------------
+  /// 3. static_cast (Statik Dönüşüm)
+  /// Daha güvenli ve anlamlı dönüşümler için kullanılır.
+  float f = 12.75f;
+  int i3 = static_cast<int>(f);  // static_cast ile açık dönüşüm (decimal kısmı kaybolur)
+  cout << "static_cast (float to int): " << i3 << endl;
+
+  /// -----------------------------------
+  /// 4. dynamic_cast (Dinamik Dönüşüm)
+  /// Polimorfizmde sınıflar arasında güvenli dönüşüm sağlar.
+  class Base { virtual void foo() {} };
+  class Derived : public Base {}; // Derived, Base sınıfından türemektedir.
+
+  Base* basePtr = new Derived;
+  Derived* derivedPtr = dynamic_cast<Derived*>(basePtr);  // Base* türünden Derived* türüne dönüşüm
+  if (derivedPtr) {
+      cout << "dynamic_cast successful!" << endl; // Eğer dönüşüm başarılıysa mesaj yazdırılır
+  } else {
+      cout << "dynamic_cast failed!" << endl;
+  }
+
+  /// -----------------------------------
+  /// 5. const_cast (const Verileri Değiştirme)
+  /// Sabit (const) olan verileri değiştirmek için kullanılır.
+  const int x = 10;
+  int* ptr = const_cast<int*>(&x);  // const_cast ile sabit değeri değiştirebiliriz (ancak bu iyi bir uygulama değildir)
+  ///-*ptr = 20;  // Sabit değeri değiştirmek tehlikeli olabilir.
+  cout << "const_cast: " << *ptr << endl; // Ancak bu tür dönüşümlerin yan etkileri olabilir.
+
+  /// -----------------------------------
+  /// 6. reinterpret_cast (Belirli Türlerin Bellekteki Temsilini Yeniden Yorumlama)
+  /// Daha tehlikeli bir dönüşümdür ve bellek adreslerini manipüle etmek için kullanılır.
+  long l = 65;
+  char* c = reinterpret_cast<char*>(&l);  // long'u char*'a dönüştürme
+  cout << "reinterpret_cast: " << *c << endl;  // Bellekteki veriyi karakter olarak okur
+
+  /// -----------------------------------
+  /// 7. nullptr ile Tür Dönüşümü
+  /// Bir işaretçi türünü `nullptr` ile değiştirme
+  int* ptr2 = nullptr;  // `nullptr` işaretçisi
+  cout << "nullptr pointer: " << ptr2 << endl;
+
+  /// -----------------------------------
+  /// 8. Akıllı Pointern Dönüşümü (smart pointer casting)
+  /// shared_ptr, unique_ptr gibi akıllı işaretçi türleri arasında dönüşüm yapılabilir.
+  #include <memory>
+  shared_ptr<Base> basePtr2 = make_shared<Derived>();
+  shared_ptr<Derived> derivedPtr2 = static_pointer_cast<Derived>(basePtr2);  // shared_ptr ile dönüşüm
+  cout << "smart pointer cast successful!" << endl;
+
+  /// -----------------------------------
+  /// 9. explicit Anahtar Kelimesiyle Tür Dönüşümü
+  /// `explicit` anahtar kelimesi, otomatik tür dönüşümünü engeller.
+  class MyClass {
+  public:
+      explicit MyClass(int x) { cout << "Explicit constructor called with " << x << endl; }
+  };
+
+  /// MyClass obj = 10;  // Hata verir çünkü explicit dönüşüm var
+  MyClass obj(10); // explicit dönüşüm gerektirir
+  */
+
   return 0;
 }
