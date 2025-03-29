@@ -125,6 +125,9 @@ int main()
   a = a + 1;  // 127 + 1 = 128, fakat signed char'ın sınırları -128 ile 127 arasında olduğu için taşma olur.
 
   cout << "a: " << (int)a << endl;  // Burada -128 yazacaktır, çünkü overflow oldu.
+  signed char x = 130;  // 130 signed char'ın alabileceği en büyük değeri aştığı için overflow olur
+  cout << "x: " << (int)x << endl;  // Sonuç: -126, çünkü taşma sonucu negatif değeri temsil eder
+
   */
   //*
   /*
