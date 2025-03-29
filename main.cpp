@@ -80,6 +80,7 @@ int main()
 
   cout << "Güvenli ve okunaklı kod: j: " << j << " i: " << i << endl;
   */
+  //*
   /*
   ///- **Integer Overflow (Tam Sayı Taşması) Örneği:**
   int x = 2147483647;  // int veri türü için maksimum değer (2^31 - 1)
@@ -118,6 +119,7 @@ int main()
 
   /// Overflow'dan kaçınmak için daha geniş bir tür kullanabiliriz (long long int)
   */
+  //*
   /*
   /// Signed char 8 bitlik bir veri türüdür, bu yüzden -128 ile 127 arasında değerler alabilir.
   /// İki'li Tamamlama (Two's Complement) yöntemi kullanılarak negatif sayılar temsil edilir.
